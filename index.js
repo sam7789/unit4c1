@@ -4,21 +4,20 @@ const app = express();
 
 app.use(logger);
 
-// let para = "librarian"//
+let para1 = "librarian"
 
 let para = "author"
-let para1 = "libraian"
 
 
 app.get('/books',(req,res)=>{
     res.send({route: req.path});
 })
 
-app.get('/libraries',checkPermission(para),(req,res)=>{
+app.get('/libraries',checkPermission(para1),(req,res)=>{
     res.send({route: req.path , permission: true});
 })
 
-app.get('/authors',checkPermission(para1),(req,res)=>{
+app.get('/authors',checkPermission(para),(req,res)=>{
     res.send({route: req.path , permission: true});
 });
 
@@ -39,13 +38,6 @@ function checkPermission(para) {
                 }
             }
         )
-    }
-    else{
-       return(
-           function(req,res,next){
-            res.send({route: req.path});
-           }
-       ) 
     }
 }
 
